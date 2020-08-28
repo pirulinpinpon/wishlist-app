@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,11 @@
 		96C3747C24F9919D00D9DAEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C3747B24F9919D00D9DAEE /* Assets.xcassets */; };
 		96C3747F24F9919D00D9DAEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C3747D24F9919D00D9DAEE /* LaunchScreen.storyboard */; };
 		96C3748A24F9919D00D9DAEE /* wishlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3748924F9919D00D9DAEE /* wishlistTests.swift */; };
+		96C3749824F997A200D9DAEE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3749724F997A200D9DAEE /* Config.swift */; };
+		96C3749A24F9980E00D9DAEE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3749924F9980E00D9DAEE /* Constants.swift */; };
+		96C3749C24F998A800D9DAEE /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3749B24F998A800D9DAEE /* Endpoints.swift */; };
+		96C3749F24F998F200D9DAEE /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3749E24F998F200D9DAEE /* Builder.swift */; };
+		96C374AA24F99A4700D9DAEE /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 96C374A924F99A4700D9DAEE /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,10 @@
 		96C3748524F9919D00D9DAEE /* wishlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wishlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C3748924F9919D00D9DAEE /* wishlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wishlistTests.swift; sourceTree = "<group>"; };
 		96C3748B24F9919D00D9DAEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96C3749724F997A200D9DAEE /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		96C3749924F9980E00D9DAEE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		96C3749B24F998A800D9DAEE /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		96C3749E24F998F200D9DAEE /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C374AA24F99A4700D9DAEE /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,13 +89,12 @@
 		96C3747124F9919900D9DAEE /* wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				96C3747224F9919900D9DAEE /* AppDelegate.swift */,
-				96C3747424F9919900D9DAEE /* SceneDelegate.swift */,
-				96C3747624F9919900D9DAEE /* ViewController.swift */,
-				96C3747824F9919900D9DAEE /* Main.storyboard */,
-				96C3747B24F9919D00D9DAEE /* Assets.xcassets */,
-				96C3747D24F9919D00D9DAEE /* LaunchScreen.storyboard */,
-				96C3748024F9919D00D9DAEE /* Info.plist */,
+				96C3749424F9975000D9DAEE /* Global */,
+				96C374A024F9991F00D9DAEE /* App */,
+				96C374A124F9994600D9DAEE /* Sections */,
+				96C374A324F9996800D9DAEE /* Common */,
+				96C374A624F999AF00D9DAEE /* Resources */,
+				96C374A724F999CE00D9DAEE /* Supporting Files */,
 			);
 			path = wishlist;
 			sourceTree = "<group>";
@@ -97,6 +106,91 @@
 				96C3748B24F9919D00D9DAEE /* Info.plist */,
 			);
 			path = wishlistTests;
+			sourceTree = "<group>";
+		};
+		96C3749424F9975000D9DAEE /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				96C3749524F9977E00D9DAEE /* Config */,
+				96C3749624F9978A00D9DAEE /* Constants */,
+				96C3749D24F998D100D9DAEE /* Builder */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		96C3749524F9977E00D9DAEE /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				96C3749724F997A200D9DAEE /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		96C3749624F9978A00D9DAEE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				96C3749924F9980E00D9DAEE /* Constants.swift */,
+				96C3749B24F998A800D9DAEE /* Endpoints.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		96C3749D24F998D100D9DAEE /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				96C3749E24F998F200D9DAEE /* Builder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		96C374A024F9991F00D9DAEE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				96C3747224F9919900D9DAEE /* AppDelegate.swift */,
+				96C3747424F9919900D9DAEE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		96C374A124F9994600D9DAEE /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				96C374A224F9995000D9DAEE /* Products */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		96C374A224F9995000D9DAEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96C3747624F9919900D9DAEE /* ViewController.swift */,
+				96C3747824F9919900D9DAEE /* Main.storyboard */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		96C374A324F9996800D9DAEE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		96C374A624F999AF00D9DAEE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96C3747D24F9919D00D9DAEE /* LaunchScreen.storyboard */,
+				96C3747B24F9919D00D9DAEE /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		96C374A724F999CE00D9DAEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96C3748024F9919D00D9DAEE /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,6 +209,9 @@
 			dependencies = (
 			);
 			name = wishlist;
+			packageProductDependencies = (
+				96C374A924F99A4700D9DAEE /* Nuke */,
+			);
 			productName = wishlist;
 			productReference = 96C3746F24F9919900D9DAEE /* wishlist.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +262,9 @@
 				Base,
 			);
 			mainGroup = 96C3746624F9919900D9DAEE;
+			packageReferences = (
+				96C374A824F99A4700D9DAEE /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 96C3747024F9919900D9DAEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,8 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C3749A24F9980E00D9DAEE /* Constants.swift in Sources */,
 				96C3747724F9919900D9DAEE /* ViewController.swift in Sources */,
+				96C3749F24F998F200D9DAEE /* Builder.swift in Sources */,
+				96C3749824F997A200D9DAEE /* Config.swift in Sources */,
 				96C3747324F9919900D9DAEE /* AppDelegate.swift in Sources */,
+				96C3749C24F998A800D9DAEE /* Endpoints.swift in Sources */,
 				96C3747524F9919900D9DAEE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +575,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96C374A824F99A4700D9DAEE /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96C374A924F99A4700D9DAEE /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96C374A824F99A4700D9DAEE /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96C3746724F9919900D9DAEE /* Project object */;
 }
