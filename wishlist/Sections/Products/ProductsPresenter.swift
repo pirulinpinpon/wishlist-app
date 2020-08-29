@@ -21,6 +21,7 @@ protocol ProductsPresenterProtocol {
     func numberOfProducts() -> Int
     func product(at index: Int) -> Product?
     func userSelectedProduct(at index: Int)
+    func userSelectedAddProduct()
 }
 
 
@@ -87,5 +88,9 @@ extension ProductsPresenter: ProductsPresenterProtocol {
     
     func userSelectedProduct(at index: Int) {
         // TODO: Should show detail view for selected product
+    }
+    
+    func userSelectedAddProduct() {
+        // TODO: Should show view for adding a new product
     }
 }

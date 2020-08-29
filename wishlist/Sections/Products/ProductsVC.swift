@@ -33,7 +33,17 @@ class ProductsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "My wishlist"
         self.presenter?.onViewDidLoad()
+        
+        let addProductButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: Selector(("didSelectAddProductButton")))
+        addProductButton.tintColor = UIColor(named: "tint")
+        self.navigationItem.rightBarButtonItem  = addProductButton
+    }
+    
+    
+    func didSelectAddProductButton() {
+        self.presenter?.userSelectedAddProduct()
     }
 }
 
