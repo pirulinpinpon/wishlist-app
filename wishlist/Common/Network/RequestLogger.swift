@@ -18,12 +18,12 @@ struct RequestLogger {
         let url = request.request?.url?.absoluteString ?? "No URL set"
         let method = request.request?.httpMethod ?? "No HTTP method set"
         
-        var log = "\nREQUEST ✉️ ⇢\n"
+        var log = "\n⇢ ⇢ ⇢ ⇢ ⇢\nREQUEST ✉️\n"
         log += " - URL:\t\t\(url)\n"
         log += " - METHOD:\t\(method)\n"
         let body = self.logBody(request)
         let headers = self.logHeaders(request)
-        log += body + headers + "⇢\n\n"
+        log += body + headers + "⇢ ⇢ ⇢ ⇢ ⇢\n"
         
         print(log)
     }
@@ -31,13 +31,12 @@ struct RequestLogger {
     // MARK: - Response
     
     static func logResponse(_ response: Response) {
-        var log = "\nRESPONSE 📨 ⇠\n"
+        var log = "\n⇠ ⇠ ⇠ ⇠ ⇠\nRESPONSE 📨\n"
         log += " - URL:\t" + self.logURL(response) + "\n"
         log += " - CODE:\t" + "\(response.statusCode)\n"
         let headers = self.logHeaders(response)
         let data = self.logData(response)
-        log += headers + data + "⇠\n\n"
-        
+        log += headers + data + "⇠ ⇠ ⇠ ⇠ ⇠\n"
         print(log)
     }
         

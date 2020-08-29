@@ -30,6 +30,7 @@
 		96C374C924FAC6C800D9DAEE /* AppWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C374C824FAC6C800D9DAEE /* AppWireframe.swift */; };
 		96C374CB24FAC71B00D9DAEE /* ProductsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C374CA24FAC71B00D9DAEE /* ProductsWireframe.swift */; };
 		96C374CD24FAC85D00D9DAEE /* ProductsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C374CC24FAC85D00D9DAEE /* ProductsPresenter.swift */; };
+		96C374CF24FADE8200D9DAEE /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C374CE24FADE8200D9DAEE /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		96C374C824FAC6C800D9DAEE /* AppWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWireframe.swift; sourceTree = "<group>"; };
 		96C374CA24FAC71B00D9DAEE /* ProductsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWireframe.swift; sourceTree = "<group>"; };
 		96C374CC24FAC85D00D9DAEE /* ProductsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsPresenter.swift; sourceTree = "<group>"; };
+		96C374CE24FADE8200D9DAEE /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				96C374CA24FAC71B00D9DAEE /* ProductsWireframe.swift */,
 				96C3747624F9919900D9DAEE /* ProductsVC.swift */,
 				96C374CC24FAC85D00D9DAEE /* ProductsPresenter.swift */,
+				96C374CE24FADE8200D9DAEE /* ProductCell.swift */,
 				96C3747824F9919900D9DAEE /* Products.storyboard */,
 			);
 			path = Products;
@@ -404,6 +407,7 @@
 				96C374B824FAB46000D9DAEE /* Product.swift in Sources */,
 				96C3749824F997A200D9DAEE /* Config.swift in Sources */,
 				96C3747324F9919900D9DAEE /* AppDelegate.swift in Sources */,
+				96C374CF24FADE8200D9DAEE /* ProductCell.swift in Sources */,
 				96C374C124FABEF800D9DAEE /* ProductInteractor.swift in Sources */,
 				96C3749C24F998A800D9DAEE /* Endpoints.swift in Sources */,
 				96C374AF24FA914200D9DAEE /* Request.swift in Sources */,

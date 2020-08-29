@@ -9,18 +9,18 @@
 import Foundation
 
 protocol ProductInteractorProtocol {
-    func products(completionHandler: @escaping (Result<[Product], NSError>) -> Void)
+    func products(completionHandler: @escaping (Result<[Product], Error>) -> Void)
 }
 
 protocol ProductInteractorInput {
-    func getProducts(completionHandler: @escaping (Result<ProductsData, NSError>) -> Void)
+    func getProducts(completionHandler: @escaping (Result<ProductsData, Error>) -> Void)
 }
 
 struct ProductInteractor: ProductInteractorProtocol {
     
     let dataInput: ProductInteractorInput
     
-    func products(completionHandler: @escaping (Result<[Product], NSError>) -> Void) {
+    func products(completionHandler: @escaping (Result<[Product], Error>) -> Void) {
         self.dataInput.getProducts { result in
             completionHandler(result.map(\.products))
         }

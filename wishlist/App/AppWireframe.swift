@@ -20,14 +20,10 @@ class AppWireframe: AppWireframeProtocol {
     var navigationController: UINavigationController?
         
     func showProducts() {
-
         let navigationController = UINavigationController()
         self.navigationController = navigationController
-        self.navigationController?.isNavigationBarHidden = true
-        
         ProductsWireframe().showProducts(in: navigationController)
         
         self.window?.rootViewController = self.navigationController
     }
-
 }

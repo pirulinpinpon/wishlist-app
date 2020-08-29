@@ -30,9 +30,7 @@ class ProductsWireframe {
 extension ProductsWireframe: ProductsWireframeProtocol {
     
     func showProducts(in navigationController: UINavigationController) {
-        self.navigationController = navigationController
-        self.navigationController?.isNavigationBarHidden = true
-        
+        self.navigationController = navigationController        
         guard let productsVC = self.loadProductsVC() else { return }
         self.navigationController?.show(productsVC, sender: self)
     }

@@ -19,7 +19,7 @@ struct Constants {
     }
     
     struct CellIdentifier {
-        static let product = "MyCell"
+        static let product = "ProductCell"
     }
     
     struct Methods {

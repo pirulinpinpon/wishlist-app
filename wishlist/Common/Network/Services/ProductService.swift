@@ -19,7 +19,7 @@ struct ProductsData: Decodable {
 
 struct ProductService: ProductInteractorInput {
     
-    func getProducts(completionHandler: @escaping (Result<ProductsData, NSError>) -> Void) {
+    func getProducts(completionHandler: @escaping (Result<ProductsData, Error>) -> Void) {
         
         let request = Request(
             method: HTTPMethod.post.rawValue,

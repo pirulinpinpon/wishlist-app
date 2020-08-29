@@ -15,7 +15,7 @@ class Response {
     var url: URL?
     var headers: [AnyHashable: Any]?
     var body: Data?
-    var error: NSError?
+    var error: Error?
 	
 	// MARK: - Initializers
 	
@@ -25,7 +25,7 @@ class Response {
 	
     convenience init(data: Data?, response: URLResponse?, error: Error?) {
         self.init()
-		self.error = error as NSError?
+		self.error = error
         guard let response = response as? HTTPURLResponse else { return }
         self.url = response.url
         self.headers = response.allHeaderFields
@@ -35,13 +35,17 @@ class Response {
     
     // MARK: - Public methods
     
-    func handleResponse<ParseData: Decodable>(completionHandler: @escaping (Result<ParseData, NSError>) -> Void) {
+    func handleResponse<ParseData: Decodable>(completionHandler: @escaping (Result<ParseData, Error>) -> Void) {
         if let error = self.error {
             completionHandler(.failure(error))
-        } else if let body = self.body, let parsedData = try? JSONDecoder.standard().decode(ParseData.self, from: body) {
-            completionHandler(.success(parsedData))
-        } else {
-            completionHandler(.failure(NSError()))
+        } else if let body = self.body {
+            do {
+                let parsedData = try JSONDecoder().decode(ParseData.self, from: body)
+                completionHandler(.success(parsedData))
+            } catch let error {
+                print(error.localizedDescription)
+                completionHandler(.failure(error))
+            }
         }
     }
 }
