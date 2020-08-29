@@ -11,11 +11,11 @@ import Foundation
 struct Constants {
     
     struct Storyboards {
-        static let main = "Main"
+        static let products = "Products"
     }
     
     struct Views {
-        static let splash = "ViewController"
+        static let products = "ProductsVC"
     }
     
     struct CellIdentifier {

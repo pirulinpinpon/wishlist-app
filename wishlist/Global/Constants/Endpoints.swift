@@ -9,7 +9,14 @@
 import Foundation
 
 struct Endpoints {
-
-    static let products = "/products"
     
+    struct Products {
+        static let products = "/products"
+        static let offset = "/products/offset"
+        static let cursor = "/products/cursor"
+        static let product = "/product"
+        static let create = "/product/create"
+        static let update = "/product/update"
+        static let delete = "/product/delete"
+    }
 }
