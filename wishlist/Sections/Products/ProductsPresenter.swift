@@ -32,10 +32,7 @@ class ProductsPresenter {
     weak var view: ProductsUI?
     let wireframe: ProductsWireframeProtocol?
     let interactor: ProductInteractorProtocol?
-    
-    // MARK: - Private properties
-    
-    private var products: [Product] = []
+    var products: [Product] = []
 
     // MARK: - Initializers
 

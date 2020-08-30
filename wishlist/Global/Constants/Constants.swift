@@ -32,7 +32,7 @@ struct Constants {
     
     struct Texts {
         struct Products {
-            static let title = "My wishlist"
+            static let title = "my wishlist"
             static let alertTitle = "Oh oh, something went wrong"
             static let alertMessage = "We weren't able to load you wishlist, please try again!"
             static let retryActionTile = "Try again"
