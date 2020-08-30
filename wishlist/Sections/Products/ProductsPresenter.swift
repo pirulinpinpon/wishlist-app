@@ -57,15 +57,15 @@ class ProductsPresenter {
                 self.view?.showProducts()
             case .failure:
                 self.view?.showAlert(
-                    title: "Oh oh, something went wrong",
-                    message: "We weren't able to load you wishlist, please try again!"
+                    title: Constants.Texts.Products.alertTitle,
+                    message: Constants.Texts.Products.alertMessage
                 )
             }
         }
     }
 }
 
-// MARK: - SplashPresenterProtocol
+// MARK: - ProductsPresenterProtocol
 
 extension ProductsPresenter: ProductsPresenterProtocol {
     
@@ -87,7 +87,8 @@ extension ProductsPresenter: ProductsPresenterProtocol {
     }
     
     func userSelectedProduct(at index: Int) {
-        // TODO: Should show detail view for selected product
+        guard self.products.count > index else { return }
+        self.wireframe?.showProductDetail(self.products[index])
     }
     
     func userSelectedAddProduct() {

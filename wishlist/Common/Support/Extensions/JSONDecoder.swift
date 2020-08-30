@@ -10,9 +10,15 @@ import Foundation
 
 extension JSONDecoder {
     
-    static func standard() -> JSONDecoder {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return dateFormatter
+    }()
+    
+    static func defaultDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
         return decoder
     }
 }

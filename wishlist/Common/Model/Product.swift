@@ -11,8 +11,8 @@ import Foundation
 struct Product: Decodable, Identifiable {
     
     let id: String
-    let createdAt: String
-    let updatedAt: String
+    let createdAt: Date
+    let updatedAt: Date
     let title: String
     let images: [String]
     let url: String

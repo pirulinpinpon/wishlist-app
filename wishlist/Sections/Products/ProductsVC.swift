@@ -13,7 +13,11 @@ class ProductsVC: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            title = Constants.Texts.Products.title
+        }
+    }
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -21,28 +25,40 @@ class ProductsVC: UIViewController {
         }
     }
     
-    // MARK: Public properties
+    // MARK: - Public properties
     
     var presenter: ProductsPresenterProtocol?
     
-    let cellSpacing: CGFloat = 2
-    let columns: CGFloat = 3
-    var cellSize: CGFloat = 0
+    // MARK: - Private properties
+    
+    private let cellSpacing: CGFloat = 2
+    private let columns: CGFloat = 3
+    private var cellSize: CGFloat = 0
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "My wishlist"
+        self.setupNavigationBar()
         self.presenter?.onViewDidLoad()
-        
-        let addProductButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: Selector(("didSelectAddProductButton")))
-        addProductButton.tintColor = UIColor(named: "tint")
+    }
+    
+    // MARK: - Private helpers
+    
+    private func setupNavigationBar() {
+        let addProductButton = UIBarButtonItem(
+            image: UIImage(systemName: "plus.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(didSelectAddProductButton)
+        )
+        addProductButton.tintColor = Colors.tint
         self.navigationItem.rightBarButtonItem  = addProductButton
     }
     
+    // MARK: - IBActions
     
-    func didSelectAddProductButton() {
+    @IBAction func didSelectAddProductButton() {
         self.presenter?.userSelectedAddProduct()
     }
 }
@@ -58,7 +74,7 @@ extension ProductsVC: ProductsUI {
             options: [.curveEaseInOut, .repeat, .autoreverse],
             animations: {
                 self.iconImageView.alpha = 0.0
-        },
+            },
             completion: nil
         )
     }
@@ -72,7 +88,7 @@ extension ProductsVC: ProductsUI {
             animations: {
                 self.titleLabel.alpha = 0.0
                 self.iconImageView.alpha = 0.0
-        },
+            },
             completion: nil
         )
     }
@@ -83,7 +99,7 @@ extension ProductsVC: ProductsUI {
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: Constants.Texts.Products.retryActionTile, style: .default, handler: { _ in
             self.presenter?.userSelectedRetry()
         }))
         self.present(alert, animated: true)
@@ -105,7 +121,7 @@ extension ProductsVC: UICollectionViewDelegate {
 extension ProductsVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.presenter?.numberOfProducts() ?? 0
+        return self.presenter?.numberOfProducts() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -124,6 +140,7 @@ extension ProductsVC: UICollectionViewDelegateFlowLayout {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
         let emptySpace = layout.sectionInset.left + layout.sectionInset.right + (self.columns * self.cellSpacing - 1)
         self.cellSize = (self.view.frame.size.width - emptySpace) / self.columns
+        
         return CGSize(width: self.cellSize, height: self.cellSize)
     }
     

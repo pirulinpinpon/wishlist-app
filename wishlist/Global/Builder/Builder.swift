@@ -9,9 +9,8 @@
 import Foundation
 
 protocol BuilderProtocol {
-    
     static func productsPresenter(view: ProductsUI, wireframe: ProductsWireframeProtocol) -> ProductsPresenter
-
+    static func productDetailPresenter(view: ProductDetailUI, wireframe: ProductsWireframeProtocol, product: Product) -> ProductDetailPresenter
 }
 
 struct Builder: BuilderProtocol {
@@ -21,6 +20,15 @@ struct Builder: BuilderProtocol {
             view: view,
             wireframe: wireframe,
             interactor: self.productInteractor()
+        )
+    }
+    
+    static func productDetailPresenter(view: ProductDetailUI, wireframe: ProductsWireframeProtocol, product: Product) -> ProductDetailPresenter {
+        return ProductDetailPresenter(
+            view: view,
+            wireframe: wireframe,
+            interactor: self.productInteractor(),
+            product: product
         )
     }
     

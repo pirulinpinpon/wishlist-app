@@ -22,6 +22,7 @@ class AppWireframe: AppWireframeProtocol {
     func showProducts() {
         let navigationController = UINavigationController()
         self.navigationController = navigationController
+        self.navigationController?.navigationBar.tintColor = Colors.tint
         ProductsWireframe().showProducts(in: navigationController)
         
         self.window?.rootViewController = self.navigationController

@@ -40,7 +40,7 @@ class Response {
             completionHandler(.failure(error))
         } else if let body = self.body {
             do {
-                let parsedData = try JSONDecoder().decode(ParseData.self, from: body)
+                let parsedData = try JSONDecoder.defaultDecoder().decode(ParseData.self, from: body)
                 completionHandler(.success(parsedData))
             } catch let error {
                 print(error.localizedDescription)

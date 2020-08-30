@@ -10,6 +10,8 @@ import UIKit
 
 protocol ProductsWireframeProtocol {
     func showProducts(in navigationController: UINavigationController)
+    func showProductDetail(_ product: Product)
+    func openURL(_ url: URL)
 }
 
 class ProductsWireframe {
@@ -23,6 +25,12 @@ class ProductsWireframe {
         productsVC.presenter = Builder.productsPresenter(view: productsVC, wireframe: self)
         return productsVC
     }
+    
+    private func loadProductDetailVC(product: Product) -> ProductDetailVC? {
+        guard let productDetailVC = try? ProductDetailVC.instantiateFromStoryboard() else { return nil }
+        productDetailVC.presenter = Builder.productDetailPresenter(view: productDetailVC, wireframe: self, product: product)
+        return productDetailVC
+    }
 }
 
 // MARK: - SplashWireframeProtocol
@@ -33,5 +41,15 @@ extension ProductsWireframe: ProductsWireframeProtocol {
         self.navigationController = navigationController        
         guard let productsVC = self.loadProductsVC() else { return }
         self.navigationController?.show(productsVC, sender: self)
+    }
+    
+    func showProductDetail(_ product: Product) {
+        guard let productDetailVC = self.loadProductDetailVC(product: product) else { return }
+        self.navigationController?.show(productDetailVC, sender: self)
+    }
+    
+    func openURL(_ url: URL) {
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
     }
 }
