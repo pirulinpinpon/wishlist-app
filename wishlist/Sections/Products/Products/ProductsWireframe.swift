@@ -12,6 +12,8 @@ protocol ProductsWireframeProtocol {
     func showProducts(in navigationController: UINavigationController)
     func showProductDetail(_ product: Product)
     func dismissProductDetail()
+    func showAddProduct()
+    func showUpdateProduct(_ product: Product)
     func openURL(_ url: URL)
 }
 
@@ -31,6 +33,12 @@ class ProductsWireframe {
         guard let productDetailVC = try? ProductDetailVC.instantiateFromStoryboard() else { return nil }
         productDetailVC.presenter = Builder.productDetailPresenter(view: productDetailVC, wireframe: self, product: product)
         return productDetailVC
+    }
+    
+    private func loadUpdateProductVC(product: Product?) -> UpdateProductVC? {
+        guard let updateProductVC = try? UpdateProductVC.instantiateFromStoryboard() else { return nil }
+        updateProductVC.presenter = Builder.updateProductPresenter(view: updateProductVC, wireframe: self, product: product)
+        return updateProductVC
     }
 }
 
@@ -52,6 +60,17 @@ extension ProductsWireframe: ProductsWireframeProtocol {
     func dismissProductDetail() {
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
+    func showAddProduct() {
+        guard let addProductVC = self.loadUpdateProductVC(product: nil) else { return }
+        self.navigationController?.show(addProductVC, sender: self)
+    }
+    
+    func showUpdateProduct(_ product: Product) {
+        guard let updateProductVC = self.loadUpdateProductVC(product: product) else { return }
+        self.navigationController?.show(updateProductVC, sender: self)
+    }
+
     func openURL(_ url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)

@@ -22,7 +22,6 @@ protocol ProductDetailPresenterProtocol {
     func userSelectedMerchantWebsite()
 }
 
-
 class ProductDetailPresenter {
     
     // MARK: - Public properties
@@ -79,12 +78,12 @@ extension ProductDetailPresenter: ProductDetailPresenterProtocol {
     func userSelectedRemoveProduct() {
         guard let product = self.product else { return }
         self.view?.showAlert(
-            title: "Remove from wishlist",
-            message: "Are you sure you want to remove \(product.title) from your wishlist?",
-            continueAction: (title: "Yes", action: {
+            title: Constants.Texts.ProductDetail.alertTitle,
+            message: Constants.Texts.ProductDetail.alertMessage.replacingOccurrences(of: "%s", with: product.title),
+            continueAction: (title: Constants.Texts.ProductDetail.continueActionTitle, action: {
                 self.removeProduct(product)
             }),
-            cancelAction: (title: "Cancel", action: {})
+            cancelAction: (title: Constants.Texts.ProductDetail.cancelActionTitle, action: {})
         )
     }
 }

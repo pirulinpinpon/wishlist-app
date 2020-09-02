@@ -17,6 +17,7 @@ struct Constants {
     struct Views {
         static let products = "ProductsVC"
         static let productDetail = "ProductDetailVC"
+        static let updateProduct = "UpdateProductVC"
     }
     
     struct CellIdentifier {
@@ -35,10 +36,14 @@ struct Constants {
             static let title = "my wishlist"
             static let alertTitle = "Oh oh, something went wrong"
             static let alertMessage = "We weren't able to load you wishlist, please try again!"
-            static let retryActionTile = "Try again"
+            static let retryActionTitle = "Try again"
         }
         struct ProductDetail {
             static let merchantTitle = "product sold by %s ⇢"
+            static let alertTitle = "Remove from wishlist"
+            static let alertMessage = "Are you sure you want to remove %s from your wishlist?"
+            static let continueActionTitle = "Yes"
+            static let cancelActionTitle = "Cancel"
         }
     }
 }

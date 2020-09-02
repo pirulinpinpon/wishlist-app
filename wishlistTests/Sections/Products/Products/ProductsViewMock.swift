@@ -33,7 +33,7 @@ class ProductsViewMock: ProductsUI {
         self.spyShowProductsCalled = true
     }
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, retryAction: AlertAction) {
         self.spyShowAlert = (called: true, title: title, message: message)
     }
 }

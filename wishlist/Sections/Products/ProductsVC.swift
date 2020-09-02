@@ -78,10 +78,10 @@ extension ProductsVC: ProductsUI {
         self.collectionView.reloadData()
     }
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, retryAction: AlertAction) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.Texts.Products.retryActionTile, style: .default, handler: { _ in
-            self.presenter?.userSelectedRetry()
+        alert.addAction(UIAlertAction(title: retryAction.title, style: .default, handler: { _ in
+            retryAction.action()
         }))
         alert.view.tintColor = Colors.tint
         self.present(alert, animated: true)

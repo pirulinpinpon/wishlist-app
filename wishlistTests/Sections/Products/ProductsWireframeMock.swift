@@ -16,6 +16,8 @@ class ProductsWireframeMock: ProductsWireframeProtocol {
     var spyShowProducts: (called: Bool, navigationController: UINavigationController?) = (called: false, navigationController: nil)
     var spyShowProductDetail: (called: Bool, product: Product?) = (called: false, product: nil)
     var spyDismissProductDetailCalled: Bool = false
+    var spyShowAddProductCalled: Bool = false
+    var spyShowUpdateProductCalled: Bool = false
     var spyOpenURL: (called: Bool, url: URL?) = (called: false, url: nil)
     
     // MARK: - ProductsWireframeProtocol
@@ -30,6 +32,14 @@ class ProductsWireframeMock: ProductsWireframeProtocol {
     
     func dismissProductDetail() {
         self.spyDismissProductDetailCalled = true
+    }
+    
+    func showAddProduct() {
+        self.spyShowAddProductCalled = true
+    }
+    
+    func showUpdateProduct(_ product: Product) {
+        self.spyShowUpdateProductCalled = true
     }
     
     func openURL(_ url: URL) {

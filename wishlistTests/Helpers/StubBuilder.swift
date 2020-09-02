@@ -27,4 +27,13 @@ struct StubBuilder: BuilderProtocol {
             product: product
         )
     }
+    
+    static func updateProductPresenter(view: UpdateProductUI, wireframe: ProductsWireframeProtocol, product: Product?) -> UpdateProductPresenter {
+        UpdateProductPresenter(
+            view: view,
+            wireframe: wireframe,
+            interactor: ProductInteractor(dataInput: ProductService()),
+            product: product
+        )
+    }
 }
