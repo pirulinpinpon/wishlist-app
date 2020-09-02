@@ -10,23 +10,23 @@ import Foundation
 @testable import wishlist
 
 
-class ProductsViewMock: ProductsUI {
-        
+class ProductsViewMock: ProductsUI { 
+            
     // MARK: - Spies
     
-    var spyShowInitialLoaderCalled: Bool = false
-    var spyDismissInitialLoaderCalled: Bool = false
+    var spyShowLoaderCalled: Bool = false
+    var spyDismissLoaderCalled: Bool = false
     var spyShowProductsCalled: Bool = false
     var spyShowAlert: (called: Bool, title: String?, message: String?) = (called: false, title: nil, message: nil)
     
     // MARK: - ProductsUI
     
-    func showInitialLoader() {
-        self.spyShowInitialLoaderCalled = true
+    func showLoader() {
+        self.spyShowLoaderCalled = true
     }
     
-    func dismissInitialLoader() {
-        self.spyDismissInitialLoaderCalled = true
+    func dismissLoader() {
+        self.spyDismissLoaderCalled = true
     }
     
     func showProducts() {

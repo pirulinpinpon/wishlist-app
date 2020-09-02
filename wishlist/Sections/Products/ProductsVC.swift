@@ -12,12 +12,6 @@ class ProductsVC: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel! {
-        didSet {
-            title = Constants.Texts.Products.title
-        }
-    }
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -34,13 +28,18 @@ class ProductsVC: UIViewController {
     private let cellSpacing: CGFloat = 2
     private let columns: CGFloat = 3
     private var cellSize: CGFloat = 0
-    
+    private lazy var loadingView = LoadingView()
+
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
-        self.presenter?.onViewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter?.onViewWillAppear()
     }
     
     // MARK: - Private helpers
@@ -67,30 +66,12 @@ class ProductsVC: UIViewController {
 
 extension ProductsVC: ProductsUI {
     
-    func showInitialLoader() {
-        UIView.animate(
-            withDuration: 0.8,
-            delay: 0.2,
-            options: [.curveEaseInOut, .repeat, .autoreverse],
-            animations: {
-                self.iconImageView.alpha = 0.0
-            },
-            completion: nil
-        )
+    func showLoader() {
+        self.loadingView.show(in: self.view)
     }
     
-    func dismissInitialLoader() {
-        self.iconImageView.layer.removeAllAnimations()
-        UIView.animate(
-            withDuration: 0.8,
-            delay: 0.2,
-            options: [.curveEaseInOut],
-            animations: {
-                self.titleLabel.alpha = 0.0
-                self.iconImageView.alpha = 0.0
-            },
-            completion: nil
-        )
+    func dismissLoader() {
+        self.loadingView.dismiss()
     }
     
     func showProducts() {
@@ -102,6 +83,7 @@ extension ProductsVC: ProductsUI {
         alert.addAction(UIAlertAction(title: Constants.Texts.Products.retryActionTile, style: .default, handler: { _ in
             self.presenter?.userSelectedRetry()
         }))
+        alert.view.tintColor = Colors.tint
         self.present(alert, animated: true)
     }
 }

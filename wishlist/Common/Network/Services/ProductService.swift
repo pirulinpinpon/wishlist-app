@@ -31,4 +31,35 @@ struct ProductService: ProductInteractorInput {
             response.handleResponse(completionHandler: completionHandler)
         }
     }
+    
+    func addProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void) {
+        
+    }
+    
+    func updateProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void) {
+        let request = Request(
+            method: HTTPMethod.post.rawValue,
+            baseURL: Config.host,
+            endpoint: Endpoints.Products.delete,
+            verbose: true
+        )
+        request.fetch { response in
+            response.handleResponse(completionHandler: completionHandler)
+        }
+    }
+    
+    func removeProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void) {
+        let request = Request(
+            method: HTTPMethod.post.rawValue,
+            baseURL: Config.host,
+            endpoint: Endpoints.Products.delete,
+            bodyParams: [
+                "id": product.id
+            ],
+            verbose: true
+        )
+        request.fetch { response in
+            response.handleResponse(completionHandler: completionHandler)
+        }
+    }
 }

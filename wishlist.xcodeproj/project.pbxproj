@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96919E08250038E2004A99C0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96919E07250038E2004A99C0 /* LoadingView.swift */; };
+		96919E0A250038F0004A99C0 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96919E09250038F0004A99C0 /* LoadingView.xib */; };
+		96919E0C250039C4004A99C0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96919E0B250039C4004A99C0 /* UIView.swift */; };
 		96C3747324F9919900D9DAEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3747224F9919900D9DAEE /* AppDelegate.swift */; };
 		96C3747724F9919900D9DAEE /* ProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3747624F9919900D9DAEE /* ProductsVC.swift */; };
 		96C3747A24F9919900D9DAEE /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C3747824F9919900D9DAEE /* Products.storyboard */; };
@@ -62,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96919E07250038E2004A99C0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		96919E09250038F0004A99C0 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		96919E0B250039C4004A99C0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		96C3746F24F9919900D9DAEE /* wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C3747224F9919900D9DAEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96C3747624F9919900D9DAEE /* ProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsVC.swift; sourceTree = "<group>"; };
@@ -127,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96919E06250038CC004A99C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96919E07250038E2004A99C0 /* LoadingView.swift */,
+				96919E09250038F0004A99C0 /* LoadingView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		96C3746624F9919900D9DAEE = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +252,7 @@
 		96C374A324F9996800D9DAEE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				96919E06250038CC004A99C0 /* Views */,
 				96C374BF24FABEE300D9DAEE /* Interactors */,
 				96C374B624FAB45200D9DAEE /* Model */,
 				96C374AB24FA912E00D9DAEE /* Network */,
@@ -311,6 +327,7 @@
 			children = (
 				96C374BD24FABC8300D9DAEE /* JSONDecoder.swift */,
 				96C374E024FBE3AC00D9DAEE /* TimeInterval.swift */,
+				96919E0B250039C4004A99C0 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -528,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C3747F24F9919D00D9DAEE /* LaunchScreen.storyboard in Resources */,
+				96919E0A250038F0004A99C0 /* LoadingView.xib in Resources */,
 				96C3747C24F9919D00D9DAEE /* Assets.xcassets in Resources */,
 				96C3747A24F9919900D9DAEE /* Products.storyboard in Resources */,
 			);
@@ -556,10 +574,12 @@
 				96C374CB24FAC71B00D9DAEE /* ProductsWireframe.swift in Sources */,
 				96C374D624FBCEBA00D9DAEE /* ProductDetailPresenter.swift in Sources */,
 				96C3749A24F9980E00D9DAEE /* Constants.swift in Sources */,
+				96919E0C250039C4004A99C0 /* UIView.swift in Sources */,
 				96C374C724FAC5E000D9DAEE /* AppController.swift in Sources */,
 				96C374CD24FAC85D00D9DAEE /* ProductsPresenter.swift in Sources */,
 				96C3747724F9919900D9DAEE /* ProductsVC.swift in Sources */,
 				96C374B124FA92C400D9DAEE /* RequestLogger.swift in Sources */,
+				96919E08250038E2004A99C0 /* LoadingView.swift in Sources */,
 				96C3749F24F998F200D9DAEE /* Builder.swift in Sources */,
 				96C374BB24FAB57000D9DAEE /* ProductService.swift in Sources */,
 				96C374DB24FBCF9400D9DAEE /* AddProductPresenter.swift in Sources */,

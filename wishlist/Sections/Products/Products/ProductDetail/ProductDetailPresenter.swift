@@ -9,7 +9,11 @@
 import Foundation
 
 protocol ProductDetailUI: class {
+    typealias AlertAction = (title: String, action: () -> Void)
     func loadProduct(_ product: Product)
+    func showAlert(title: String, message: String, continueAction: AlertAction, cancelAction: AlertAction)
+    func showLoading()
+    func dismissLoading()
 }
 
 protocol ProductDetailPresenterProtocol {
@@ -42,7 +46,20 @@ class ProductDetailPresenter {
     
     // MARK: - Private methods
     
-    // ...
+    private func removeProduct(_ product: Product) {
+        guard let product = self.product else { return }
+        self.view?.showLoading()
+        self.interactor?.removeProduct(product) { result in
+            self.view?.dismissLoading()
+            switch result {
+            case .success:
+                self.wireframe?.dismissProductDetail()
+            case .failure:
+                break
+            }
+        }
+        
+    }
 }
 
 // MARK: - ProductDetailPresenterProtocol
@@ -60,6 +77,14 @@ extension ProductDetailPresenter: ProductDetailPresenterProtocol {
     }
     
     func userSelectedRemoveProduct() {
-        // TODO: Should show alert to confirm action
+        guard let product = self.product else { return }
+        self.view?.showAlert(
+            title: "Remove from wishlist",
+            message: "Are you sure you want to remove \(product.title) from your wishlist?",
+            continueAction: (title: "Yes", action: {
+                self.removeProduct(product)
+            }),
+            cancelAction: (title: "Cancel", action: {})
+        )
     }
 }

@@ -25,6 +25,10 @@ class ProductDetailVC: UIViewController {
     }
     @IBOutlet weak var createdDateLabel: UILabel!
         
+    // MARK: - Private properties
+
+    private lazy var loadingView = LoadingView()
+    
     // MARK: - Public properties
     
     var presenter: ProductDetailPresenterProtocol?
@@ -64,7 +68,7 @@ class ProductDetailVC: UIViewController {
 // MARK: - ProductDetailUI
 
 extension ProductDetailVC: ProductDetailUI {
-    
+
     func loadProduct(_ product: Product) {
         self.titleLabel.text = product.title.lowercased()
         self.merchantWebsiteButton.setTitle(Constants.Texts.ProductDetail.merchantTitle.replacingOccurrences(of: "%s", with: product.merchant.lowercased()), for: .normal)
@@ -72,6 +76,26 @@ extension ProductDetailVC: ProductDetailUI {
         guard let image = product.images.first, let imageURL = URL(string: image) else { return }
         let request = ImageRequest(url: imageURL)
         Nuke.loadImage(with: request, into: self.imageView)
+    }
+    
+    func showAlert(title: String, message: String, continueAction: AlertAction, cancelAction: AlertAction) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: continueAction.title, style: .default, handler: { _ in
+            continueAction.action()
+        }))
+        alert.addAction(UIAlertAction(title: cancelAction.title, style: .default, handler: { _ in
+            cancelAction.action()
+        }))
+        alert.view.tintColor = Colors.tint
+        self.present(alert, animated: true)
+    }
+    
+    func showLoading() {
+        self.loadingView.show(in: self.view)
+    }
+    
+    func dismissLoading() {
+        self.loadingView.dismiss()
     }
 }
 

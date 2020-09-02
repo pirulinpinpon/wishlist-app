@@ -11,6 +11,7 @@ import UIKit
 protocol ProductsWireframeProtocol {
     func showProducts(in navigationController: UINavigationController)
     func showProductDetail(_ product: Product)
+    func dismissProductDetail()
     func openURL(_ url: URL)
 }
 
@@ -48,6 +49,9 @@ extension ProductsWireframe: ProductsWireframeProtocol {
         self.navigationController?.show(productDetailVC, sender: self)
     }
     
+    func dismissProductDetail() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     func openURL(_ url: URL) {
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)

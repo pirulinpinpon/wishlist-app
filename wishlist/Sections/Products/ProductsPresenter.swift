@@ -9,14 +9,14 @@
 import Foundation
 
 protocol ProductsUI: class {
-    func showInitialLoader()
-    func dismissInitialLoader()
+    func showLoader()
+    func dismissLoader()
     func showProducts()
     func showAlert(title: String, message: String)
 }
 
 protocol ProductsPresenterProtocol {
-    func onViewDidLoad()
+    func onViewWillAppear()
     func userSelectedRetry()
     func numberOfProducts() -> Int
     func product(at index: Int) -> Product?
@@ -45,9 +45,9 @@ class ProductsPresenter {
     // MARK: - Private methods
     
     private func loadProducs() {
-        self.view?.showInitialLoader()
+        self.view?.showLoader()
         self.interactor?.products { result in
-            self.view?.dismissInitialLoader()
+            self.view?.dismissLoader()
             switch result {
             case .success(let products):
                 self.products = products
@@ -66,7 +66,7 @@ class ProductsPresenter {
 
 extension ProductsPresenter: ProductsPresenterProtocol {
     
-    func onViewDidLoad() {
+    func onViewWillAppear() {
         self.loadProducs()
     }
     

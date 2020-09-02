@@ -45,11 +45,11 @@ class ProductsSpec: QuickSpec {
             describe("when products section appears") {
                 
                 beforeEach {
-                    self.presenter.onViewDidLoad()
+                    self.presenter.onViewWillAppear()
                 }
                 
                 it("view should indicate that it's loading") {
-                    expect(self.viewMock.spyShowInitialLoaderCalled).toEventually(beTrue())
+                    expect(self.viewMock.spyShowLoaderCalled).toEventually(beTrue())
                 }
             }
         }
@@ -60,10 +60,10 @@ class ProductsSpec: QuickSpec {
                 beforeEach {
                     let path = URL(string: Config.host + Endpoints.Products.products)!.path
                     StubResponse.mockSuccessResponse(for: path, with: "products_success.json")
-                    self.presenter.onViewDidLoad()
+                    self.presenter.onViewWillAppear()
                 }
                 it("should dismiss loading indicator and show products") {
-                    expect(self.viewMock.spyDismissInitialLoaderCalled).toEventually(beTrue(), timeout: 10)
+                    expect(self.viewMock.spyDismissLoaderCalled).toEventually(beTrue(), timeout: 10)
                     expect(self.viewMock.spyShowProductsCalled).toEventually(beTrue(), timeout: 10)
                 }
             }
@@ -72,10 +72,10 @@ class ProductsSpec: QuickSpec {
                 beforeEach {
                     let path = URL(string: Config.host + Endpoints.Products.products)!.path
                     StubResponse.mockFailureResponse(for: path, with: "products_failure.json")
-                    self.presenter.onViewDidLoad()
+                    self.presenter.onViewWillAppear()
                 }
                 it("should show alert with error message") {
-                    expect(self.viewMock.spyDismissInitialLoaderCalled).toEventually(beTrue())
+                    expect(self.viewMock.spyDismissLoaderCalled).toEventually(beTrue())
                     expect(self.viewMock.spyShowAlert.called).toEventually(beTrue())
                 }
             }
