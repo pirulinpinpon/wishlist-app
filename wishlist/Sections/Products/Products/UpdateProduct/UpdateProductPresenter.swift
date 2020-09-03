@@ -63,7 +63,13 @@ class UpdateProductPresenter {
         self.view?.showLoading()
         self.interactor?.addProduct(title: title, imageURL: imageURL, merchant: merchant, merchantURL: merchantURL) { result in
             self.view?.dismissLoading()
-            self.wireframe?.dismissAddProduct()
+            switch result {
+            case .success:
+                self.wireframe?.dismissAddProduct()
+            case .failure:
+                // TODO: Handle error and show alert to user
+                break
+            }
         }
     }
     
@@ -71,7 +77,13 @@ class UpdateProductPresenter {
         self.view?.showLoading()
         self.interactor?.updateProduct(product) { result in
             self.view?.dismissLoading()
-            self.wireframe?.dismissUpdateProduct()
+            switch result {
+            case .success:
+                self.wireframe?.dismissUpdateProduct()
+            case .failure:
+                // TODO: Handle error and show alert to user
+                break
+            }
         }
     }
 }

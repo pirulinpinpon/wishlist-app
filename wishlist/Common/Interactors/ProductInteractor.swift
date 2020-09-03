@@ -10,6 +10,7 @@ import Foundation
 
 protocol ProductInteractorProtocol {
     func products(completionHandler: @escaping (Result<[Product], Error>) -> Void)
+    func product(id: String, completionHandler: @escaping (Result<Product, Error>) -> Void)
     func addProduct(title: String, imageURL: String, merchant: String, merchantURL: String, completionHandler: @escaping (Result<Bool, Error>) -> Void)
     func updateProduct(_ product: Product, completionHandler: @escaping (Result<Bool, Error>) -> Void)
     func removeProduct(_ product: Product, completionHandler: @escaping (Result<Bool, Error>) -> Void)
@@ -17,6 +18,7 @@ protocol ProductInteractorProtocol {
 
 protocol ProductInteractorInput {
     func getProducts(completionHandler: @escaping (Result<ProductsData, Error>) -> Void)
+    func getProduct(id: String, completionHandler: @escaping (Result<ProductData, Error>) -> Void)
     func addProduct(title: String, imageURL: String, merchant: String, merchantURL: String, completionHandler: @escaping (Result<Product, Error>) -> Void)
     func updateProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void)
     func removeProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void)
@@ -40,6 +42,12 @@ struct ProductInteractor: ProductInteractorProtocol {
             case .failure(let error):
                 completionHandler(.failure(error))
             }
+        }
+    }
+    
+    func product(id: String, completionHandler: @escaping (Result<Product, Error>) -> Void) {
+        self.dataInput.getProduct(id: id) { result in
+            completionHandler(result.map(\.product))
         }
     }
     

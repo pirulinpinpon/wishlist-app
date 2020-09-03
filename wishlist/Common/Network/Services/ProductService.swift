@@ -17,6 +17,15 @@ struct ProductsData: Decodable {
     }
 }
 
+struct ProductData: Decodable {
+    
+    let product: Product
+    
+    enum CodingKeys: String, CodingKey {
+        case product = "post"
+    }
+}
+
 struct ProductServiceKeys {
     static let id = "id"
     static let title = "title"
@@ -40,6 +49,17 @@ struct ProductService: ProductInteractorInput {
         }
     }
     
+    func getProduct(id: String, completionHandler: @escaping (Result<ProductData, Error>) -> Void) {
+        let request = Request(
+            method: HTTPMethod.get.rawValue,
+            baseURL: Config.host,
+            endpoint: Endpoints.Products.product + id,
+            verbose: true
+        )
+        request.fetch { response in
+            response.handleResponse(completionHandler: completionHandler)
+        }
+    }
     func addProduct(title: String, imageURL: String, merchant: String, merchantURL: String, completionHandler: @escaping (Result<Product, Error>) -> Void) {
         let request = Request(
             method: HTTPMethod.post.rawValue,

@@ -34,9 +34,9 @@ class ProductDetailPresenter {
     // MARK: - Private properties
     
     private var product: Product?
-
+    
     // MARK: - Initializers
-
+    
     init(view: ProductDetailUI, wireframe: ProductsWireframeProtocol, interactor: ProductInteractorProtocol, product: Product) {
         self.view = view
         self.wireframe = wireframe
@@ -46,8 +46,21 @@ class ProductDetailPresenter {
     
     // MARK: - Private methods
     
+    private func loadProduct(_ product: Product) {
+        self.view?.showLoading()
+        self.interactor?.product(id: product.id) { result in
+            self.view?.dismissLoading()
+            switch result {
+            case .success:
+                self.view?.loadProduct(product)
+            case .failure:
+                // TODO: Handle error and show alert to user
+                break
+            }
+        }
+    }
+    
     private func removeProduct(_ product: Product) {
-        guard let product = self.product else { return }
         self.view?.showLoading()
         self.interactor?.removeProduct(product) { result in
             self.view?.dismissLoading()
@@ -55,10 +68,10 @@ class ProductDetailPresenter {
             case .success:
                 self.wireframe?.dismissProductDetail()
             case .failure:
+                // TODO: Handle error and show alert to user
                 break
             }
         }
-        
     }
 }
 
@@ -68,7 +81,7 @@ extension ProductDetailPresenter: ProductDetailPresenterProtocol {
     
     func onViewDidLoad() {
         guard let product = self.product else { return }
-        self.view?.loadProduct(product)
+        self.loadProduct(product)
     }
     
     func userSelectedMerchantWebsite() {
