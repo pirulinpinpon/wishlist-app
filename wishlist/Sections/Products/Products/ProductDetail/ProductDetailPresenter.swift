@@ -19,6 +19,7 @@ protocol ProductDetailUI: class {
 protocol ProductDetailPresenterProtocol {
     func onViewDidLoad()
     func userSelectedRemoveProduct()
+    func userSelectedUpdateProduct()
     func userSelectedMerchantWebsite()
 }
 
@@ -73,6 +74,11 @@ extension ProductDetailPresenter: ProductDetailPresenterProtocol {
     func userSelectedMerchantWebsite() {
         guard let merchantWebsite = self.product?.url, let merchantWebsiteURL = URL(string: merchantWebsite) else { return }
         self.wireframe?.openURL(merchantWebsiteURL)
+    }
+    
+    func userSelectedUpdateProduct() {
+        guard let product = self.product else { return }
+        self.wireframe?.showUpdateProduct(product)
     }
     
     func userSelectedRemoveProduct() {

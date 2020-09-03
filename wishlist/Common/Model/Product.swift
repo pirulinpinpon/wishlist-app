@@ -13,8 +13,8 @@ struct Product: Decodable, Identifiable {
     let id: String
     let createdAt: Date
     let updatedAt: Date
-    let title: String
-    let images: [String]
-    let url: String
-    let merchant: String
+    var title: String
+    var images: [String]
+    var url: String
+    var merchant: String
 }

@@ -44,14 +44,21 @@ class ProductDetailVC: UIViewController {
     // MARK: - Private helpers
     
     private func setupNavigationBar() {
-        let addProductButton = UIBarButtonItem(
+        let removeProductButton = UIBarButtonItem(
             image: UIImage(systemName: "heart.slash"),
             style: .plain,
             target: self,
             action: #selector(didSelectRemoveProductButton)
         )
-        addProductButton.tintColor = Colors.tint
-        self.navigationItem.rightBarButtonItem  = addProductButton
+        removeProductButton.tintColor = Colors.tint
+        let updateProductButton = UIBarButtonItem(
+            image: UIImage(systemName: "pencil.tip"),
+            style: .plain,
+            target: self,
+            action: #selector(didSelectUpdateProductButton)
+        )
+        updateProductButton.tintColor = Colors.tint
+        self.navigationItem.rightBarButtonItems  = [removeProductButton, updateProductButton]
     }
     
     // MARK: - IBActions
@@ -62,6 +69,10 @@ class ProductDetailVC: UIViewController {
     
     @IBAction func didSelectRemoveProductButton() {
         self.presenter?.userSelectedRemoveProduct()
+    }
+    
+    @IBAction func didSelectUpdateProductButton() {
+        self.presenter?.userSelectedUpdateProduct()
     }
 }
 

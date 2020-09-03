@@ -84,6 +84,8 @@ class UpdateProductVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter?.onViewDidLoad()
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnBackground))
+        self.view.addGestureRecognizer(gestureRecognizer)
         self.registerForNotifications()
     }
     
@@ -91,6 +93,10 @@ class UpdateProductVC: UIViewController {
     
     @IBAction func didTapOnUpdateButton(_ sender: Any) {
         self.presenter?.userSelectedUpdateButton()
+    }
+    
+    @IBAction func tappedOnBackground(_ sender: Any) {
+         self.view.endEditing(true)
     }
     
     // MARK: - Private helpers
@@ -114,13 +120,24 @@ class UpdateProductVC: UIViewController {
 
 extension UpdateProductVC: UpdateProductUI {
     
-    func loadProduct(_ product: Product?) {
-        self.updateButton.setTitle(product != nil ? "update product" : "add product", for: .normal)
-        guard let product = product else { return}
+    func loadForUpdate(_ product: Product) {
+        self.updateButton.setTitle("update product", for: .normal)
         self.productTextField.text = product.title
         self.imageURLTextField.text = product.images.first
         self.merchantNameTextField.text = product.merchant
         self.merchantURLTextField.text = product.url
+    }
+    
+    func loadForAdd() {
+        self.updateButton.setTitle("add product", for: .normal)
+    }
+    
+    func enableUpdateButton() {
+        self.updateButton.isEnabled = true
+    }
+    
+    func disableUpdateButton() {
+        self.updateButton.isEnabled = false
     }
 
     func showLoading() {
@@ -139,12 +156,16 @@ extension UpdateProductVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case self.productTextField:
+            self.presenter?.userEnteredTitle(textField.text)
             self.imageURLTextField.becomeFirstResponder()
         case self.imageURLTextField:
+            self.presenter?.userEnteredImageURL(textField.text)
             self.merchantNameTextField.becomeFirstResponder()
         case self.merchantNameTextField:
+            self.presenter?.userEnteredMerchant(textField.text)
             self.merchantURLTextField.becomeFirstResponder()
         case self.merchantURLTextField:
+            self.presenter?.userEnteredMerchantURL(textField.text)
             self.view.endEditing(true)
         default:
             break

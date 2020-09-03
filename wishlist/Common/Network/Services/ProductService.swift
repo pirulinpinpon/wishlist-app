@@ -17,6 +17,14 @@ struct ProductsData: Decodable {
     }
 }
 
+struct ProductServiceKeys {
+    static let id = "id"
+    static let title = "title"
+    static let images = "images"
+    static let merchantURL = "url"
+    static let merchant = "merchant"
+}
+
 struct ProductService: ProductInteractorInput {
     
     func getProducts(completionHandler: @escaping (Result<ProductsData, Error>) -> Void) {
@@ -32,15 +40,40 @@ struct ProductService: ProductInteractorInput {
         }
     }
     
-    func addProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void) {
-        
+    func addProduct(title: String, imageURL: String, merchant: String, merchantURL: String, completionHandler: @escaping (Result<Product, Error>) -> Void) {
+        let request = Request(
+            method: HTTPMethod.post.rawValue,
+            baseURL: Config.host,
+            endpoint: Endpoints.Products.create,
+            bodyParams: [
+                ProductServiceKeys.title: title,
+                ProductServiceKeys.images: [
+                    imageURL
+                ],
+                ProductServiceKeys.merchantURL: merchantURL,
+                ProductServiceKeys.merchant: merchant
+            ],
+            verbose: true
+        )
+        request.fetch { response in
+            response.handleResponse(completionHandler: completionHandler)
+        }
     }
     
     func updateProduct(_ product: Product, completionHandler: @escaping (Result<Product, Error>) -> Void) {
         let request = Request(
             method: HTTPMethod.post.rawValue,
             baseURL: Config.host,
-            endpoint: Endpoints.Products.delete,
+            endpoint: Endpoints.Products.update,
+            bodyParams: [
+                ProductServiceKeys.id: product.id,
+                ProductServiceKeys.title: product.title,
+                ProductServiceKeys.images: [
+                    product.images.first ?? ""
+                ],
+                ProductServiceKeys.merchantURL: product.url,
+                ProductServiceKeys.merchant: product.merchant
+            ],
             verbose: true
         )
         request.fetch { response in
@@ -54,7 +87,7 @@ struct ProductService: ProductInteractorInput {
             baseURL: Config.host,
             endpoint: Endpoints.Products.delete,
             bodyParams: [
-                "id": product.id
+                ProductServiceKeys.id: product.id
             ],
             verbose: true
         )

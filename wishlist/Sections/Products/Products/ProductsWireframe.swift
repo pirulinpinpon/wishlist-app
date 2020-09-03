@@ -13,7 +13,9 @@ protocol ProductsWireframeProtocol {
     func showProductDetail(_ product: Product)
     func dismissProductDetail()
     func showAddProduct()
+    func dismissAddProduct()
     func showUpdateProduct(_ product: Product)
+    func dismissUpdateProduct()
     func openURL(_ url: URL)
 }
 
@@ -66,9 +68,17 @@ extension ProductsWireframe: ProductsWireframeProtocol {
         self.navigationController?.show(addProductVC, sender: self)
     }
     
+    func dismissAddProduct() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     func showUpdateProduct(_ product: Product) {
         guard let updateProductVC = self.loadUpdateProductVC(product: product) else { return }
         self.navigationController?.show(updateProductVC, sender: self)
+    }
+    
+    func dismissUpdateProduct() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     func openURL(_ url: URL) {
