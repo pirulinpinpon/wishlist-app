@@ -36,17 +36,17 @@ extension TimeInterval {
 
     var friendlyString: String {
         if self.years != 0 {
-            return "\(self.years) year\(self.years > 0 ? "s" : "") ago"
+            return "\(self.years) year\(self.years > 1 ? "s" : "") ago"
         } else if self.months != 0 {
-            return "\(self.months) month\(self.months > 0 ? "s" : "") ago"
+            return "\(self.months) month\(self.months > 1 ? "s" : "") ago"
         } else if self.days != 0 {
-            return "\(self.days) month\(self.days > 0 ? "s" : "") ago"
+            return "\(self.days) day\(self.days > 1 ? "s" : "") ago"
         } else if self.hours != 0 {
-            return "\(self.hours) hour\(self.hours > 0 ? "s" : "") ago"
+            return "\(self.hours) hour\(self.hours > 1 ? "s" : "") ago"
         } else if self.minutes != 0 {
-            return "\(self.minutes) minute\(self.minutes > 0 ? "s" : "") ago"
+            return "\(self.minutes) minute\(self.minutes > 1 ? "s" : "") ago"
         } else {
-            return "\(self.seconds) second\(self.seconds > 0 ? "s" : "") ago"
+            return "\(self.seconds) second\(self.seconds > 1 ? "s" : "") ago"
         }
     }
 }
